@@ -1,0 +1,9 @@
+{
+  "slug": "couriers",
+  "name": "Curieri & AWB - WooCommerce / eMAG",
+  "version": "1.15.1",
+  "description": "AWB eMAG/WooCommerce cu import Marketplace per comanda, cautare feed resumabila, prevenirea dublurilor si A4/A6.",
+  "author": "ALFAMED CENTRAL",
+  "min_app_version": "0.11.24",
+  "default_enabled": true
+}

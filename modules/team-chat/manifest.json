@@ -1,0 +1,9 @@
+{
+  "slug": "team-chat",
+  "name": "Echipa, utilizatori & chat",
+  "version": "2.5.0",
+  "description": "Administrare utilizatori, jurnal de activitate si chat intern ALFAMED cu acces pe roluri, camera si notificari Web Push.",
+  "author": "ALFAMED CENTRAL",
+  "min_app_version": "0.11.44",
+  "default_enabled": true
+}

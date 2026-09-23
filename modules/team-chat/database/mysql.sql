@@ -1,0 +1,40 @@
+CREATE TABLE IF NOT EXISTS chat_rooms (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ type VARCHAR(20) NOT NULL DEFAULT 'direct',
+ name VARCHAR(190) NULL,
+ direct_key VARCHAR(80) NULL UNIQUE,
+ created_by BIGINT UNSIGNED NOT NULL,
+ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ KEY idx_chat_rooms_type(type)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS chat_room_members (
+ room_id BIGINT UNSIGNED NOT NULL,
+ user_id BIGINT UNSIGNED NOT NULL,
+ joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ muted TINYINT(1) NOT NULL DEFAULT 0,
+ PRIMARY KEY(room_id,user_id),
+ KEY idx_chat_member_user(user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS chat_messages (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ room_id BIGINT UNSIGNED NOT NULL,
+ sender_id BIGINT UNSIGNED NOT NULL,
+ message TEXT NULL,
+ attachment_name VARCHAR(255) NULL,
+ attachment_path TEXT NULL,
+ attachment_mime VARCHAR(120) NULL,
+ attachment_size BIGINT UNSIGNED NULL,
+ edited_at DATETIME NULL,
+ deleted_at DATETIME NULL,
+ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ KEY idx_chat_messages_room(room_id,id),
+ KEY idx_chat_messages_sender(sender_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS chat_message_reads (
+ user_id BIGINT UNSIGNED NOT NULL,
+ message_id BIGINT UNSIGNED NOT NULL,
+ read_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY(user_id,message_id),
+ KEY idx_chat_reads_message(message_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -1,0 +1,9 @@
+{
+  "slug": "invoices-documents",
+  "name": "Oblio - Facturi & documente",
+  "version": "1.12.1",
+  "description": "Oblio channel-aware cu nomenclator local, echivalari automate multi-sursa, fallback manual protejat, storno fiscal, verificare stoc si sincronizare robusta a documentelor.",
+  "author": "ALFAMED CENTRAL",
+  "min_app_version": "0.11.14",
+  "default_enabled": true
+}

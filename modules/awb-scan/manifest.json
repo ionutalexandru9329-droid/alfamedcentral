@@ -1,0 +1,9 @@
+{
+  "slug": "awb-scan",
+  "name": "AWB & Scanare colete",
+  "version": "1.13.0",
+  "description": "Scanare AWB/QR instant, bazata exclusiv pe expedierile salvate local in ALFAMED CENTRAL.",
+  "author": "ALFAMED CENTRAL",
+  "min_app_version": "0.11.24",
+  "default_enabled": false
+}

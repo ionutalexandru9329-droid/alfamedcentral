@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS push_subscriptions (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT UNSIGNED NOT NULL,
+    endpoint TEXT NOT NULL,
+    endpoint_hash CHAR(64) NOT NULL UNIQUE,
+    p256dh VARCHAR(255) NOT NULL,
+    auth_key VARCHAR(255) NOT NULL,
+    device_label VARCHAR(120) NULL,
+    user_agent VARCHAR(500) NULL,
+    active TINYINT(1) NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    last_seen_at TIMESTAMP NULL DEFAULT NULL,
+    KEY idx_push_user_active(user_id, active)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -1,0 +1,9 @@
+{
+  "slug": "new-order-popup",
+  "name": "Notificari comenzi noi",
+  "version": "3.2.0",
+  "description": "Centru de notificari comenzi/stoc cu Web Push per utilizator, test pe dispozitiv si sincronizare de fundal fara blocarea interfetei.",
+  "author": "ALFAMED CENTRAL",
+  "min_app_version": "0.11.5",
+  "default_enabled": true
+}

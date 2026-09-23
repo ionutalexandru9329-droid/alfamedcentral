@@ -1,0 +1,9 @@
+{
+  "slug": "ai-product-import",
+  "name": "Auto Import AI produse",
+  "version": "1.2.0",
+  "description": "Import inteligent din URL cu SKU secvential din catalogul central, date structurate JSON-LD/OpenGraph si creare ca ciorna in Univera.ro si/sau Alfamedclinic.ro.",
+  "author": "ALFAMED CENTRAL",
+  "min_app_version": "0.10.0",
+  "default_enabled": true
+}
