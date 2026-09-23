@@ -1,0 +1,26 @@
+<?php
+$root=dirname(__DIR__);
+$checks=[];
+$activity=file_get_contents($root.'/app/Services/ActivityService.php');
+$upgrade=file_get_contents($root.'/app/Core/UpgradeManager.php');
+$team=file_get_contents($root.'/modules/team-chat/bootstrap.php');
+$users=file_get_contents($root.'/views/users.php');
+$journal=file_get_contents($root.'/views/user_activity.php');
+$dash=file_get_contents($root.'/views/dashboard.php');
+$stats=file_get_contents($root.'/views/statistics.php');
+$css=file_get_contents($root.'/public/assets/app.css');
+$auth=file_get_contents($root.'/app/Core/Auth.php');
+$index=file_get_contents($root.'/public/index.php');
+$checks['activity_table']=str_contains($upgrade,'user_activity_logs')&&str_contains($upgrade,'ensureActivityLogTable');
+$checks['activity_service']=str_contains($activity,'beginRequestAudit')&&str_contains($activity,'recentOperational')&&str_contains($activity,'safeContext');
+$checks['passwords_not_logged']=str_contains($activity,'pass|secret|token|key|message|content|description');
+$checks['admin_nav']=str_contains($team,"'label'=>'Utilizatori'")&&str_contains($team,"'permission'=>'admin'")&&str_contains($team,"'/users/activity'");
+$checks['user_actions']=str_contains($team,"/toggle$#")&&str_contains($team,"/delete$#")&&str_contains($team,'Nu iti poti sterge propriul cont');
+$checks['soft_delete']=str_contains($team,'deleted_at=CURRENT_TIMESTAMP')&&str_contains($auth,"deleted_at");
+$checks['users_ui']=str_contains($users,'Suspenda')&&str_contains($users,'Reactiveaza')&&str_contains($users,'Sterge')&&str_contains($users,'Jurnal activitate');
+$checks['journal_ui']=str_contains($journal,'Jurnal activitate')&&str_contains($journal,'activity-timeline')&&str_contains($journal,'Doar administrator');
+$checks['dashboard_activity']=str_contains($dash,'Activitate echipa')&&str_contains($index,'recentOperational(7)');
+$checks['statistics_ui']=str_contains($stats,'Evolutie comenzi')&&str_contains($stats,'Performanta pe canale')&&str_contains($stats,'Top produse vandute');
+$checks['responsive_css']=str_contains($css,'.users-admin-grid')&&str_contains($css,'.activity-filter-panel')&&str_contains($css,'.statistics-pro-kpis')&&str_contains($css,'@media(max-width:760px)');
+$failed=array_keys(array_filter($checks,static fn($v)=>!$v));
+if($failed){fwrite(STDERR,'FAIL: '.implode(', ',$failed)."\n");exit(1);}echo "OK v0.11.44 users/activity/statistics regression\n";
